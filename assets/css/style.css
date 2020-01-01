@@ -613,6 +613,7 @@ textarea{
 .anim-typewriter{
     animation: typewriter 0.8s steps(44) 1s 1 normal both,
             blinkTextCursor 500ms steps(44) infinite normal;
+    animation-delay: 1.9s;
 }
 @keyframes typewriter{
     from{width: 0;}
