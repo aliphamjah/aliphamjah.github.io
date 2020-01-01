@@ -150,12 +150,10 @@ body {
     top: 50%;
     margin: 0 auto;
     border-right: 2px solid rgba(255,255,255,.75);
-    font-size: 150%;
+    font-size: 170%;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    transform: translateY(-50%);
-    height: 2rem;
 }
 .hr-social{
     margin:0px;
