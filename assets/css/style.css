@@ -146,6 +146,16 @@ body {
     font-family: 'Lora', serif;
     font-style: italic;
     font-size: 21px;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 150%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
+    height: 2rem;
 }
 .hr-social{
     margin:0px;
@@ -599,4 +609,18 @@ textarea{
          padding-bottom:4vh;
     }
     
+}
+
+/* Anim type writer */
+.anim-typewriter{
+    animation: typewriter 0.8s steps(44) 1s 1 normal both,
+            blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 100%;}
+}
+@keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: black;}
 }
