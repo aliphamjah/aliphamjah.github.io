@@ -92,6 +92,7 @@ body {
 .wow-logo{
     padding-bottom: 2vh;
     padding-top:10vh;
+    color: #404866;
 }
 .img-logo{
     max-height: 15vh;
@@ -143,6 +144,7 @@ body {
     transition: .5s;
 }
 .font-1{
+    color: #818181;
     font-family: 'Lora', serif;
     font-style: italic;
     font-size: 21px;
@@ -154,6 +156,9 @@ body {
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
+}
+.font-1 strong{
+    color: #404866;
 }
 .hr-social{
     margin:0px;
@@ -266,9 +271,9 @@ i{
 .social li{
     list-style-type: none;
     display: inline-block;
-    border:1px solid #c8c2c2;
+    border: 1px solid #c8c2c2;
     margin-right: 5px;
-    border-radius: 3px;
+    border-radius: 15px;
     background-color: #ffffff;
 }
 .social a{
@@ -276,6 +281,7 @@ i{
     color: black;
     text-align: center;
     text-decoration: none;
+    border-radius: 15px;
 }
 
 .social a:hover{
