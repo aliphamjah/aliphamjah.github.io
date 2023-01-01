@@ -18,7 +18,7 @@ body {
   padding-top: 10vh;
 }
 .name h1 {
-    background-color: #404866;
+    background-color: #303042;
     display: initial;
     padding: 0px 15px;
     color: white;
@@ -32,7 +32,7 @@ body {
   background-size: 53vh;
 }
 .font-1 {
-  background-color: #404866;
+  background-color: #303042;
   color: white;
   font-family: "Lora", serif;
   font-style: italic;
@@ -77,14 +77,14 @@ h1 {
 }
 .social a {
   padding: 10px;
-  color: #404866;
+  color: #303042;
   text-align: center;
   text-decoration: none;
   border-radius: 10px;
 }
 .social a:hover {
   color: #ffffff;
-  background-color: #404866;
+  background-color: #303042;
 }
 .wow-btn {
   padding-top: 4vh;
@@ -139,6 +139,6 @@ h1 {
     border-right-color: rgba(255, 255, 255, 0.75);
   }
   to {
-    border-right-color: #404866;
+    border-right-color: #303042;
   }
 }
