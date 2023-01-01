@@ -10,7 +10,6 @@ body {
   background-image: url("../img/pattern.jpeg");
   transition: background-color 0.5s;
   font-family: monospace;
-  background-clip: content-box;
   background-size: 840px;
   backdrop-filter: blur(1px);
 }
