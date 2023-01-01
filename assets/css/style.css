@@ -7,11 +7,11 @@ body {
 }
 body {
   position: relative;
-  background-image: url("../img/pattern.jpg");
-  transition: background-color 0.5s;
+  background-image: url("../img/pattern.png");
   font-family: monospace;
-  background-size: 840px;
+  background-size: 100vh;
   backdrop-filter: blur(1px);
+  min-height: 100vh;
 }
 .name {
   padding-bottom: 2vh;
