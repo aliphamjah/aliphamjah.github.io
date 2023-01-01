@@ -11,9 +11,6 @@ body {
   transition: background-color 0.5s;
   font-family: monospace;
   background-size: 840px;
-  -o-background-size: 840px;
-  -moz-background-size: 840px;
-  -webkit-background-size: 840px;
   backdrop-filter: blur(1px);
 }
 .name {
