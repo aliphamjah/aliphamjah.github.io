@@ -11,6 +11,7 @@ body {
   font-family: monospace;
   background-size: 100vh;
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   min-height: 100vh;
 }
 .name {
