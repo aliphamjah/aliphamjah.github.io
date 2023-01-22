@@ -9,8 +9,7 @@ body {
   position: relative;
   background-image: url("../img/pattern.png");
   font-family: monospace;
-  background-size: 100vh;
-  backdrop-filter: blur(4px);
+  background-size: cover;
   -webkit-backdrop-filter: blur(4px);
   min-height: 100vh;
 }
@@ -33,10 +32,9 @@ body {
   background-size: 53vh;
 }
 .font-1 {
-  background-color: white;
   color: #303042;
-  font-family: "Lora", serif;
-  font-style: italic;
+  font-family: "Red Hat Mono",Monaco,Consolas,monospace;
+  font-weight: bold;
   position: relative;
   top: 50%;
   margin: 0 auto;
