@@ -99,7 +99,7 @@ h1 {
   }
 }
 
-/*This section for small height device*/
+/* This section applies to small-height devices */
 @media only screen and (max-height: 400px) {
   .name {
     padding-bottom: 2vh;
