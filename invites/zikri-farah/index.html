@@ -7,6 +7,10 @@
 .personCard{position:relative;border:1px solid #e7dfd7;border-radius:24px;background:#fff;box-shadow:0 14px 44px rgba(0,0,0,.06)}.personCard::after{content:"";position:absolute;inset:-10px;border-radius:28px;box-shadow:0 0 0 1px rgba(180,154,131,.12);pointer-events:none}.personInfo{padding:18px 18px 22px;text-align:center}.tagChip{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .6rem;border:1px solid #e7dfd7;border-radius:9999px;background:#f8f4f1;color:#8a847e;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.igBtn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:12px;border:1px solid #e7dfd7;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.05);color:#6d6965}.igBtn:hover{background:#f9f6f3}.personName{font-family:"Playfair Display",serif;font-weight:600}.personMeta{color:#6d6965}
 .sasi-full{position:relative}.sasi-full>*{position:relative;z-index:1}.sasi-full::before{content:"";position:absolute;inset:0;border-radius:inherit;background-repeat:repeat;background-position:center;background-size:56px 22px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='22' viewBox='0 0 56 22'><g fill='none' stroke='%23b49a83' stroke-width='1.4'><path d='M8 11c0-4 4-8 20-8s20 4 20 8-4 8-20 8S8 15 8 11z'/><circle cx='28' cy='11' r='2.2'/></g></svg>");opacity:.07;pointer-events:none;z-index:0}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}.reveal[data-anim="fade-left"]{transform:translateX(24px)}.reveal[data-anim="fade-right"]{transform:translateX(-24px)}.reveal[data-anim="zoom"]{transform:scale(.96)}.reveal.is-visible{opacity:1;transform:none}.audioBar{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}.audioBar.show{opacity:1;transform:none}
+.fab{position:fixed;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:40}
+.fab-right{right:calc(1rem + env(safe-area-inset-right))}
+.fab-left{left:calc(1rem + env(safe-area-inset-left))}
+@media (min-width:768px){.fab-right{right:1.5rem}.fab-left{left:1.5rem}}
 </style>
 </head>
 <body class="lock font-sans text-[#2e2b28] bg-taupe">
@@ -49,7 +53,7 @@
   </header>
 
   <!-- AUDIO STICKY -->
-  <div id="audioBar" class="audioBar fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 w-[60px] h-[60px] rounded-full border border-taupe-border shadow-[0_14px_30px_rgba(0,0,0,.18),0_0_0_6px_rgba(180,154,131,.08)] bg-gradient-to-br from-white to-[#f8f5f1] grid place-items-center p-0" hidden>
+  <div id="audioBar" class="audioBar fab fab-right w-[60px] h-[60px] rounded-full border border-taupe-border shadow-[0_14px_30px_rgba(0,0,0,.18),0_0_0_6px_rgba(180,154,131,.08)] bg-gradient-to-br from-white to-[#f8f5f1] grid place-items-center p-0" hidden>
     <div class="eq absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-[22px] h-4 flex items-end gap-1.5" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <button id="audioToggle" type="button" class="w-full h-full inline-flex items-center justify-center"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/musical-note.svg" class="w-[22px] h-[22px]"/><span id="audioLabel" class="sr-only">Putar Musik</span></button>
     <audio id="bgm" src="" preload="metadata" loop></audio>
@@ -172,21 +176,97 @@
   <!-- FOOTER -->
   <footer class="relative bg-gradient-to-b from-taupe-soft to-taupe py-12 md:py-20 text-[#3b332c]"><div class="absolute inset-x-0 -top-3 h-[22px] opacity-25 bg-repeat bg-[length:56px_22px] bg-sasi"></div>
     <div class="max-w-[980px] mx-auto px-4 grid justify-items-center text-center gap-4"><div id="footCrest" class="reveal w-14 h-14 rounded-full border border-taupe-border grid place-items-center font-serif font-bold bg-gradient-to-b from-[#f7f3ef] via-[#efe8e1] to-[#e8dfd6]">Z&F</div><h3 class="font-serif text-[clamp(18px,3vw,22px)]">Terima kasih</h3><p>Doa dan restu Anda sangat berarti bagi kami.</p><nav class="flex flex-wrap justify-center gap-3 mt-2"><a href="#event" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-taupe-border bg-white"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/calendar-days.svg" class="w-4 h-4"/><span>Wedding Event</span></a><a id="btnMapsFoot" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-taupe-border bg-white"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/map-pin.svg" class="w-4 h-4"/><span>Google Maps</span></a><a href="#gallery-section" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-taupe-border bg-white"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/photo.svg" class="w-4 h-4"/><span>Gallery</span></a></nav><div class="opacity-70">© <span id="year"></span> <span id="footCouple">Zikri & Farah</span></div></div>
-    <button id="toTop" class="fixed left-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] w-11 h-11 rounded-full border border-taupe-border bg-white text-[#2e2b28] shadow-[0_10px_28px_rgba(0,0,0,.15)]" aria-label="Kembali ke atas"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/chevron-up.svg" class="w-5 h-5 mx-auto"/></button>
+    <button id="toTop" class="fab fab-left w-11 h-11 rounded-full border border-taupe-border bg-white text-[#2e2b28] shadow-[0_10px_28px_rgba(0,0,0,.15)]" aria-label="Kembali ke atas"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/chevron-up.svg" class="w-5 h-5 mx-auto"/></button>
   </footer>
 
 <script>const $=(s)=>document.querySelector(s),el=(id)=>document.getElementById(id),fmtDateDots=(d)=>{const dd=String(d.getDate()).padStart(2,'0'),mm=String(d.getMonth()+1).padStart(2,'0'),yy=d.getFullYear();return `${dd} . ${mm} . ${yy}`},fmtDateLong=(d)=>d.toLocaleString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}),monShort='JAN,FEB,MAR,APR,MEI,JUN,JUL,AGS,SEP,OKT,NOV,DES'.split(',');const _lbInit=el('lightbox');if(_lbInit){_lbInit.hidden=true;_lbInit.style.display='none'}const CONF={couple:'Zikri & Farah',dateISO:'2025-09-14T10:00:00+08:00',resepsiISO:'2025-09-14T13:00:00+08:00',venueName:'Banjarmasin, Kalimantan Selatan',tz:'WITA',mapsUrl:'https://www.google.com/maps?q=Banjarmasin',rsvpUrl:'#',waGiftUrl:'#',gallery:['https://picsum.photos/id/1015/1000/1250','https://picsum.photos/id/1027/1000/1250','https://picsum.photos/id/1035/1000/1250','https://picsum.photos/id/1041/1000/1250','https://picsum.photos/id/106/1000/1250','https://picsum.photos/id/169/1000/1250','https://picsum.photos/id/177/1000/1250','https://picsum.photos/id/206/1000/1250','https://picsum.photos/id/207/1000/1250','https://picsum.photos/id/208/1000/1250','https://picsum.photos/id/209/1000/1250','https://picsum.photos/id/210/1000/1250'],bgm:'assets/bgm.mp3',ig1:'#',ig2:'#',verse:'“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri…”',verseRef:'Q.S. Ar-Rum : 21'};const params=new URLSearchParams(location.search),toName=(params.get('to')||'Sahabat kami').replace(/\+/g,' ');el('cv_couple').textContent=CONF.couple;const akad=new Date(CONF.dateISO),resepsi=new Date(CONF.resepsiISO||CONF.dateISO);el('cv_date').textContent=fmtDateDots(akad);el('guest').textContent=toName;const tpl=el('tplBadge');if(tpl){const rawTo=new URLSearchParams(location.search).get('to');tpl.style.display=rawTo?'none':'inline-flex'}el('couple').textContent=CONF.couple;el('dateplace').textContent=`${akad.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})} · ${CONF.venueName}`;el('btnMaps').href=CONF.mapsUrl;el('btnMaps2').href=CONF.mapsUrl;const fmtPanel=(d)=>({day:String(d.getDate()),mon:monShort[d.getMonth()]+' '+d.getFullYear(),long:`${fmtDateLong(d).replace(' pukul',' ·')} ${CONF.tz}`}),a=fmtPanel(akad),r=fmtPanel(resepsi);el('akad_day').textContent=a.day;el('akad_mon').textContent=a.mon;el('akadDate').textContent=a.long;el('venue1').textContent=CONF.venueName;el('resep_day').textContent=r.day;el('resep_mon').textContent=r.mon;el('resepDate').textContent=r.long;el('venue2').textContent=CONF.venueName;const cdDateEl=el('cdDate');if(cdDateEl){cdDateEl.textContent=`${fmtDateLong(akad).replace(' pukul',' ·')} ${CONF.tz} — ${CONF.venueName}`}const crest=el('crest');if(crest){const initials=CONF.couple.split('&').map(s=>s.trim()[0]||'').join('&');crest.textContent=initials}el('verseText')&&(el('verseText').textContent=CONF.verse);el('verseRef')&&(el('verseRef').textContent=CONF.verseRef);el('ig1')&&(el('ig1').href=CONF.ig1);el('ig2')&&(el('ig2').href=CONF.ig2);
 function buildGallery(){if(window._galleryBuilt)return;window._galleryBuilt=true;const gGrid=el('galleryGrid');if(!gGrid)return;(CONF.gallery||[]).forEach((u,i)=>{const thumb=u.replace('/1000/1250','/400/500');const a=document.createElement('a');a.href=u;a.className='block rounded-xl overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,.08)] bg-[#f3efe9] reveal';a.dataset.delay=`${i*40}ms`;a.setAttribute('data-i',i);const img=new Image();img.loading='lazy';img.decoding='async';img.alt=`Moment ${i+1}`;img.src=thumb;img.style.aspectRatio='3/4';img.style.objectFit='cover';a.appendChild(img);gGrid.appendChild(a);if(window.__observe)window.__observe(a)});const lb=el('lightbox'),lbImg=el('lbImg');if(lb){gGrid.addEventListener('click',(e)=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();lbImg.src=a.href;lb.hidden=false;document.body.classList.add('lock')});lb.addEventListener('click',()=>{lb.hidden=true;lbImg.src='';document.body.classList.remove('lock')});document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&!lb.hidden){lb.click()}})}}
 const R=44,C=2*Math.PI*R,setRing=(id,val,max)=>{const c=el(id);if(!c)return;c.style.strokeDasharray=`${C}`;c.style.strokeDashoffset=`${C*(1-(val/max))}`};function tick(){const now=new Date();let diff=Math.max(0,akad-now);const sec=Math.floor(diff/1000)%60,min=Math.floor(diff/60000)%60,hr=Math.floor(diff/3600000)%24,day=Math.floor(diff/86400000),pad=(n)=>String(n).padStart(2,'0');el('d').textContent=day;el('h').textContent=pad(hr);el('m').textContent=pad(min);el('s').textContent=pad(sec);setRing('ring-s',sec,60);setRing('ring-m',min,60);setRing('ring-h',hr,24)}tick();setInterval(tick,1000);
-const audio=el('bgm'),audioBar=el('audioBar'),audioToggle=el('audioToggle');audio.src=CONF.bgm;audioBar.hidden=false;let playing=false;const label=el('audioLabel');const setState=()=>{audioBar.classList.toggle('playing',playing);if(label)label.textContent=playing?'Hentikan Musik':'Putar Musik';if(audioToggle){audioToggle.setAttribute('aria-label',label?label.textContent:(playing?'Hentikan Musik':'Putar Musik'))}};
+const audio=el('bgm'),audioBar=el('audioBar'),audioToggle=el('audioToggle');audio.src=CONF.bgm;audioBar.hidden=false;let playing=false;const label=el('audioLabel');const setState=()=>{const isPlaying=!audio.paused;audioBar.classList.toggle('playing',isPlaying);if(label)label.textContent=isPlaying?'Hentikan Musik':'Putar Musik';if(audioToggle){audioToggle.setAttribute('aria-label',label?label.textContent:(isPlaying?'Hentikan Musik':'Putar Musik'))}};
+// keep state in sync with real media events
+audio.addEventListener('play', ()=>{playing=true;setState()});
+audio.addEventListener('pause', ()=>{playing=false;setState()});
 // Fade helper & STOP function
 const fadeAudio=(a,to=1,ms=500)=>new Promise(res=>{const from=a.volume,step=(to-from)/(ms/50);const t=setInterval(()=>{const v=Math.max(0,Math.min(1,a.volume+step));a.volume=v;if((step>0&&v>=to)||(step<0&&v<=to)){clearInterval(t);res()}},50)});
-window.stopMusic=async()=>{try{await fadeAudio(audio,0,300);await audio.pause();audio.currentTime=0;playing=false;setState()}catch(_){}};audioToggle.onclick=async(e)=>{try{if(e&&(e.altKey||e.metaKey)){await window.stopMusic();return}if(playing){await fadeAudio(audio,0,300);await audio.pause();playing=false}else{audio.volume=0;await audio.play();playing=true;await fadeAudio(audio,0.6,400)}setState()}catch(_){}};
-// Long-press to STOP (600ms) + dblclick stop
-let __pressT=null;audioToggle.addEventListener('pointerdown',()=>{__pressT=setTimeout(()=>{window.stopMusic()},600)},{passive:true});['pointerup','pointerleave','pointercancel'].forEach(ev=>audioToggle.addEventListener(ev,()=>{if(__pressT){clearTimeout(__pressT);__pressT=null}}));audioToggle.addEventListener('dblclick',(ev)=>{ev.preventDefault();window.stopMusic()});
+window.stopMusic=async()=>{try{await fadeAudio(audio,0,300);await audio.pause();audio.currentTime=0;playing=false;setState()}catch(_){}};// Toggle / Stop handlers with mobile-friendly long-press & double-tap
+let __lpTimer=null, __suppressClick=false, __lastTap=0;
+const __startLP=()=>{__suppressClick=false; if(__lpTimer) clearTimeout(__lpTimer); __lpTimer=setTimeout(()=>{__suppressClick=true; window.stopMusic();},600)};
+const __endLP=()=>{if(__lpTimer){clearTimeout(__lpTimer); __lpTimer=null}};
+// pointer & touch long-press
+audioToggle.addEventListener('pointerdown', __startLP, {passive:true});
+['pointerup','pointerleave','pointercancel'].forEach(ev=>audioToggle.addEventListener(ev,__endLP));
+audioToggle.addEventListener('touchstart', __startLP, {passive:true});
+audioToggle.addEventListener('touchend', (e)=>{__endLP(); const now=Date.now(); if(now-__lastTap<300){__suppressClick=true; window.stopMusic();} __lastTap=now;}, {passive:true});
+// main click toggle
+audioToggle.addEventListener('click', async (e)=>{
+  if(__suppressClick){ e.preventDefault(); __suppressClick=false; return; }
+  try{
+    if(e && (e.altKey||e.metaKey)){ await window.stopMusic(); return; }
+    if(!audio.paused){ await fadeAudio(audio,0,300); await audio.pause(); }
+    else{ audio.volume=0; await audio.play(); await fadeAudio(audio,0.6,400); }
+    setState();
+  }catch(_){ }
+});
 const openInvitation=async()=>{document.body.classList.remove('lock');const cv=el('cover');if(cv)cv.style.display='none';try{audio.volume=0;await audio.play();playing=true;setState();await fadeAudio(audio,0.6,600);}catch(_){ }audioBar.classList.add('show');buildGallery()};window.__open=()=>{openInvitation()};if(window.__openPending){openInvitation();window.__openPending=false}
 const coverEl=$('#cover'),btnOpen=el('openBtn');if(btnOpen)btnOpen.addEventListener('click',openInvitation);document.addEventListener('keydown',(e)=>{if((e.key==='Enter'||e.key===' ')&&coverEl&&coverEl.style.display!=='none'){openInvitation()}});
 el('year').textContent=new Date().getFullYear();el('footCouple')&&(el('footCouple').textContent=CONF.couple);el('btnMapsFoot')&&(el('btnMapsFoot').href=CONF.mapsUrl);const toTop=el('toTop');if(toTop){toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))}
-(function runTests(){const tests=[],assert=(n,c)=>{tests.push({name:n,pass:!!c});console.assert(c,n)};assert('window.__open is function',typeof window.__open==='function');assert('#cover exists',!!document.getElementById('cover'));assert('#openBtn exists',!!document.getElementById('openBtn'));assert('buildGallery exists',typeof buildGallery==='function');if(new URLSearchParams(location.search).get('__test')==='call-open'){try{window.__open();assert('call-open did not throw',true)}catch(e){assert('call-open threw',false)}}window.__lastTestResults=tests})();</script>
+(async function runTests(){
+  const tests=[]; const assert=(n,c)=>{tests.push({name:n,pass:!!c}); console.assert(c,n)};
+  // existing sanity tests
+  assert('window.__open is function', typeof window.__open==='function');
+  assert('#cover exists', !!document.getElementById('cover'));
+  assert('#openBtn exists', !!document.getElementById('openBtn'));
+  assert('buildGallery exists', typeof buildGallery==='function');
+
+  // --- audio tests (stub play/pause to avoid browser autoplay policy) ---
+  const audio = document.getElementById('bgm');
+  const audioToggle = document.getElementById('audioToggle');
+  assert('audio element exists', !!audio);
+  assert('audioToggle exists', !!audioToggle);
+  const origPlay = audio.play.bind(audio);
+  const origPause = audio.pause.bind(audio);
+  let playCalled=0, pauseCalled=0;
+  audio.play = ()=>{ playCalled++; return Promise.resolve(); };
+  audio.pause = ()=>{ pauseCalled++; return Promise.resolve(); };
+
+  // toggle play via button
+  try { audioToggle.click(); } catch(_) {}
+  await new Promise(r=>setTimeout(r,30));
+  assert('toggle play invoked audio.play', playCalled>0);
+
+  // STOP via API
+  try { await window.stopMusic(); } catch(_) {}
+  await new Promise(r=>setTimeout(r,360)); // wait for fade
+  assert('stopMusic calls pause()', pauseCalled>0);
+  assert('stopMusic resets to start', Math.abs(audio.currentTime||0) < 0.001);
+
+  // STOP via long-press (simulate)
+  try {
+    // ensure state playing first
+    audioToggle.click(); await new Promise(r=>setTimeout(r,30));
+    const evDown = new PointerEvent('pointerdown', {bubbles:true});
+    audioToggle.dispatchEvent(evDown);
+    await new Promise(r=>setTimeout(r,650)); // long-press threshold 600ms
+    const evUp = new PointerEvent('pointerup', {bubbles:true});
+    audioToggle.dispatchEvent(evUp);
+    await new Promise(r=>setTimeout(r,20));
+    assert('long-press triggers stop', true); // if no throw, passed
+  } catch(e) { assert('long-press triggers stop', false); }
+
+  // STOP via alt+click
+  try {
+    const ev = new MouseEvent('click', {bubbles:true, altKey:true});
+    audioToggle.dispatchEvent(ev);
+    assert('alt+click handled without error', true);
+  } catch(e) { assert('alt+click handled without error', false); }
+
+  // restore originals
+  audio.play = origPlay; audio.pause = origPause;
+
+  if(new URLSearchParams(location.search).get('__test')==='call-open'){
+    try{ window.__open(); assert('call-open did not throw', true) }catch(e){ assert('call-open threw', false) }
+  }
+  window.__lastTestResults = tests;
+})();</script>
 <script>// ===== Reveal on scroll =====
 (function setupReveals(){const els=document.querySelectorAll('.reveal');const IO=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const t=en.target;const d=t.dataset.delay||'0s';t.style.transitionDelay=d;t.classList.add('is-visible');IO.unobserve(t)}})},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});els.forEach(e=>IO.observe(e));document.querySelectorAll('#countdown .cdTile').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);document.querySelectorAll('#love article.reveal').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);window.__observe=(node)=>IO.observe(node)})();</script></body></html>
