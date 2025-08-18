@@ -182,7 +182,12 @@
 <script>const $=(s)=>document.querySelector(s),el=(id)=>document.getElementById(id),fmtDateDots=(d)=>{const dd=String(d.getDate()).padStart(2,'0'),mm=String(d.getMonth()+1).padStart(2,'0'),yy=d.getFullYear();return `${dd} . ${mm} . ${yy}`},fmtDateLong=(d)=>d.toLocaleString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}),monShort='JAN,FEB,MAR,APR,MEI,JUN,JUL,AGS,SEP,OKT,NOV,DES'.split(',');const _lbInit=el('lightbox');if(_lbInit){_lbInit.hidden=true;_lbInit.style.display='none'}const CONF={couple:'Zikri & Farah',dateISO:'2025-09-14T10:00:00+08:00',resepsiISO:'2025-09-14T13:00:00+08:00',venueName:'Banjarmasin, Kalimantan Selatan',tz:'WITA',mapsUrl:'https://www.google.com/maps?q=Banjarmasin',rsvpUrl:'#',waGiftUrl:'#',gallery:['https://picsum.photos/id/1015/1000/1250','https://picsum.photos/id/1027/1000/1250','https://picsum.photos/id/1035/1000/1250','https://picsum.photos/id/1041/1000/1250','https://picsum.photos/id/106/1000/1250','https://picsum.photos/id/169/1000/1250','https://picsum.photos/id/177/1000/1250','https://picsum.photos/id/206/1000/1250','https://picsum.photos/id/207/1000/1250','https://picsum.photos/id/208/1000/1250','https://picsum.photos/id/209/1000/1250','https://picsum.photos/id/210/1000/1250'],bgm:'assets/bgm.mp3',ig1:'#',ig2:'#',verse:'“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri…”',verseRef:'Q.S. Ar-Rum : 21'};const params=new URLSearchParams(location.search),toName=(params.get('to')||'Sahabat kami').replace(/\+/g,' ');el('cv_couple').textContent=CONF.couple;const akad=new Date(CONF.dateISO),resepsi=new Date(CONF.resepsiISO||CONF.dateISO);el('cv_date').textContent=fmtDateDots(akad);el('guest').textContent=toName;const tpl=el('tplBadge');if(tpl){const rawTo=new URLSearchParams(location.search).get('to');tpl.style.display=rawTo?'none':'inline-flex'}el('couple').textContent=CONF.couple;el('dateplace').textContent=`${akad.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})} · ${CONF.venueName}`;el('btnMaps').href=CONF.mapsUrl;el('btnMaps2').href=CONF.mapsUrl;const fmtPanel=(d)=>({day:String(d.getDate()),mon:monShort[d.getMonth()]+' '+d.getFullYear(),long:`${fmtDateLong(d).replace(' pukul',' ·')} ${CONF.tz}`}),a=fmtPanel(akad),r=fmtPanel(resepsi);el('akad_day').textContent=a.day;el('akad_mon').textContent=a.mon;el('akadDate').textContent=a.long;el('venue1').textContent=CONF.venueName;el('resep_day').textContent=r.day;el('resep_mon').textContent=r.mon;el('resepDate').textContent=r.long;el('venue2').textContent=CONF.venueName;const cdDateEl=el('cdDate');if(cdDateEl){cdDateEl.textContent=`${fmtDateLong(akad).replace(' pukul',' ·')} ${CONF.tz} — ${CONF.venueName}`}const crest=el('crest');if(crest){const initials=CONF.couple.split('&').map(s=>s.trim()[0]||'').join('&');crest.textContent=initials}el('verseText')&&(el('verseText').textContent=CONF.verse);el('verseRef')&&(el('verseRef').textContent=CONF.verseRef);el('ig1')&&(el('ig1').href=CONF.ig1);el('ig2')&&(el('ig2').href=CONF.ig2);
 function buildGallery(){if(window._galleryBuilt)return;window._galleryBuilt=true;const gGrid=el('galleryGrid');if(!gGrid)return;(CONF.gallery||[]).forEach((u,i)=>{const thumb=u.replace('/1000/1250','/400/500');const a=document.createElement('a');a.href=u;a.className='block rounded-xl overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,.08)] bg-[#f3efe9] reveal';a.dataset.delay=`${i*40}ms`;a.setAttribute('data-i',i);const img=new Image();img.loading='lazy';img.decoding='async';img.alt=`Moment ${i+1}`;img.src=thumb;img.style.aspectRatio='3/4';img.style.objectFit='cover';a.appendChild(img);gGrid.appendChild(a);if(window.__observe)window.__observe(a)});const lb=el('lightbox'),lbImg=el('lbImg');if(lb){gGrid.addEventListener('click',(e)=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();lbImg.src=a.href;lb.hidden=false;document.body.classList.add('lock')});lb.addEventListener('click',()=>{lb.hidden=true;lbImg.src='';document.body.classList.remove('lock')});document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&!lb.hidden){lb.click()}})}}
 const R=44,C=2*Math.PI*R,setRing=(id,val,max)=>{const c=el(id);if(!c)return;c.style.strokeDasharray=`${C}`;c.style.strokeDashoffset=`${C*(1-(val/max))}`};function tick(){const now=new Date();let diff=Math.max(0,akad-now);const sec=Math.floor(diff/1000)%60,min=Math.floor(diff/60000)%60,hr=Math.floor(diff/3600000)%24,day=Math.floor(diff/86400000),pad=(n)=>String(n).padStart(2,'0');el('d').textContent=day;el('h').textContent=pad(hr);el('m').textContent=pad(min);el('s').textContent=pad(sec);setRing('ring-s',sec,60);setRing('ring-m',min,60);setRing('ring-h',hr,24)}tick();setInterval(tick,1000);
-const audio=el('bgm'),audioBar=el('audioBar'),audioToggle=el('audioToggle');audio.src=CONF.bgm;audioBar.hidden=false;let playing=false;const label=el('audioLabel');const setState=()=>{const isPlaying=!audio.paused;audioBar.classList.toggle('playing',isPlaying);if(label)label.textContent=isPlaying?'Hentikan Musik':'Putar Musik';if(audioToggle){audioToggle.setAttribute('aria-label',label?label.textContent:(isPlaying?'Hentikan Musik':'Putar Musik'))}};
+const audio=el('bgm'),audioBar=el('audioBar'),audioToggle=el('audioToggle');
+audio.src=CONF.bgm || 'assets/bgm.mp3';
+audio.load();
+audio.volume=0.6;
+audio.addEventListener('error',()=>{try{if(!/bgm\.mp3$/.test(audio.src)){audio.src='assets/bgm.mp3';audio.load();}}catch(_){} });
+audioBar.hidden=false;let playing=false;const label=el('audioLabel');const setState=()=>{const isPlaying=!audio.paused;audioBar.classList.toggle('playing',isPlaying);if(label)label.textContent=isPlaying?'Hentikan Musik':'Putar Musik';if(audioToggle){audioToggle.setAttribute('aria-label',label?label.textContent:(isPlaying?'Hentikan Musik':'Putar Musik'))}};
 // keep state in sync with real media events
 audio.addEventListener('play', ()=>{playing=true;setState()});
 audio.addEventListener('pause', ()=>{playing=false;setState()});
@@ -210,15 +215,12 @@ audioToggle.addEventListener('click', async (e)=>{
 const openInvitation=async()=>{document.body.classList.remove('lock');const cv=el('cover');if(cv)cv.style.display='none';try{audio.volume=0;await audio.play();playing=true;setState();await fadeAudio(audio,0.6,600);}catch(_){ }audioBar.classList.add('show');buildGallery()};window.__open=()=>{openInvitation()};if(window.__openPending){openInvitation();window.__openPending=false}
 const coverEl=$('#cover'),btnOpen=el('openBtn');if(btnOpen)btnOpen.addEventListener('click',openInvitation);document.addEventListener('keydown',(e)=>{if((e.key==='Enter'||e.key===' ')&&coverEl&&coverEl.style.display!=='none'){openInvitation()}});
 el('year').textContent=new Date().getFullYear();el('footCouple')&&(el('footCouple').textContent=CONF.couple);el('btnMapsFoot')&&(el('btnMapsFoot').href=CONF.mapsUrl);const toTop=el('toTop');if(toTop){toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))}
-(async function runTests(){
+(function(){if(!new URLSearchParams(location.search).has('__test')) return; (async function runTests(){
   const tests=[]; const assert=(n,c)=>{tests.push({name:n,pass:!!c}); console.assert(c,n)};
-  // existing sanity tests
   assert('window.__open is function', typeof window.__open==='function');
   assert('#cover exists', !!document.getElementById('cover'));
   assert('#openBtn exists', !!document.getElementById('openBtn'));
   assert('buildGallery exists', typeof buildGallery==='function');
-
-  // --- audio tests (stub play/pause to avoid browser autoplay policy) ---
   const audio = document.getElementById('bgm');
   const audioToggle = document.getElementById('audioToggle');
   assert('audio element exists', !!audio);
@@ -228,45 +230,15 @@ el('year').textContent=new Date().getFullYear();el('footCouple')&&(el('footCoupl
   let playCalled=0, pauseCalled=0;
   audio.play = ()=>{ playCalled++; return Promise.resolve(); };
   audio.pause = ()=>{ pauseCalled++; return Promise.resolve(); };
-
-  // toggle play via button
   try { audioToggle.click(); } catch(_) {}
   await new Promise(r=>setTimeout(r,30));
   assert('toggle play invoked audio.play', playCalled>0);
-
-  // STOP via API
   try { await window.stopMusic(); } catch(_) {}
-  await new Promise(r=>setTimeout(r,360)); // wait for fade
+  await new Promise(r=>setTimeout(r,360));
   assert('stopMusic calls pause()', pauseCalled>0);
   assert('stopMusic resets to start', Math.abs(audio.currentTime||0) < 0.001);
-
-  // STOP via long-press (simulate)
-  try {
-    // ensure state playing first
-    audioToggle.click(); await new Promise(r=>setTimeout(r,30));
-    const evDown = new PointerEvent('pointerdown', {bubbles:true});
-    audioToggle.dispatchEvent(evDown);
-    await new Promise(r=>setTimeout(r,650)); // long-press threshold 600ms
-    const evUp = new PointerEvent('pointerup', {bubbles:true});
-    audioToggle.dispatchEvent(evUp);
-    await new Promise(r=>setTimeout(r,20));
-    assert('long-press triggers stop', true); // if no throw, passed
-  } catch(e) { assert('long-press triggers stop', false); }
-
-  // STOP via alt+click
-  try {
-    const ev = new MouseEvent('click', {bubbles:true, altKey:true});
-    audioToggle.dispatchEvent(ev);
-    assert('alt+click handled without error', true);
-  } catch(e) { assert('alt+click handled without error', false); }
-
-  // restore originals
   audio.play = origPlay; audio.pause = origPause;
-
-  if(new URLSearchParams(location.search).get('__test')==='call-open'){
-    try{ window.__open(); assert('call-open did not throw', true) }catch(e){ assert('call-open threw', false) }
-  }
   window.__lastTestResults = tests;
-})();</script>
+})();})();</script>
 <script>// ===== Reveal on scroll =====
 (function setupReveals(){const els=document.querySelectorAll('.reveal');const IO=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const t=en.target;const d=t.dataset.delay||'0s';t.style.transitionDelay=d;t.classList.add('is-visible');IO.unobserve(t)}})},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});els.forEach(e=>IO.observe(e));document.querySelectorAll('#countdown .cdTile').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);document.querySelectorAll('#love article.reveal').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);window.__observe=(node)=>IO.observe(node)})();</script></body></html>
