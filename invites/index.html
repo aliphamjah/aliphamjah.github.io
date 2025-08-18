@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan – Fulan & Fulana</title>
+  <meta name="description" content="Undangan pernikahan Fulan & Fulana" />
+  <meta property="og:title" content="Undangan Pernikahan – Fulan & Fulana" />
+  <meta property="og:description" content="Mohon doa & kehadiran Anda." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero.jpg" />
+  <style>
+    :root { --maxw: 980px; --pad: 16px; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#121212; background:#fff; }
+    a { color: inherit; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--pad); }
+    .hero { position: relative; min-height: 70vh; display:grid; place-items:center; text-align:center; color:#fff; }
+    .hero::before { content:""; position:absolute; inset:0; background:url('assets/hero.jpg') center/cover no-repeat; filter: brightness(0.55); }
+    .hero > * { position: relative; z-index:1; }
+    .badge { display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,.7); border-radius:999px; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+    h1 { font-size: clamp(28px, 6vw, 56px); margin:12px 0 4px; }
+    .sub { opacity:.9; font-size: clamp(14px, 2.5vw, 18px); }
+    .cta { margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .btn { border:1px solid currentColor; padding:10px 16px; border-radius:12px; cursor:pointer; text-decoration:none; }
+    .btn.primary { background:#121212; color:#fff; border-color:#121212; }
+    .grid { display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: 1 / -1; border:1px solid #e8e8e8; border-radius:16px; padding:18px; }
+    @media (min-width: 720px){ .card.half { grid-column: span 6; } }
+    h2 { font-size: clamp(20px, 3.5vw, 28px); margin: 8px 0 12px; }
+    .muted { color:#666; font-size:14px; }
+    .countdown { font-variant-numeric: tabular-nums; display:flex; gap:10px; justify-content:center; }
+    .tile { text-align:center; min-width:70px; }
+    .num { font-size: 32px; font-weight:600; }
+    .label { font-size: 12px; color:#666; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:10px; }
+    .gallery img { width:100%; height:180px; object-fit:cover; border-radius:12px; }
+    footer { text-align:center; color:#666; padding:24px 0 40px; }
+    .bank { display:flex; align-items:center; gap:10px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+<body>
+  <!-- =====================
+       KONFIGURASI CEPAT
+       Ubah variabel di bawah ini saja untuk rebrand per folder teman.
+       ===================== -->
+  <script>
+    const CONF = {
+      couple: 'Fulan & Fulana',
+      dateISO: '2025-12-20T10:00:00+07:00', // format ISO dengan zona waktu
+      venueName: 'Gedung Serbaguna Al-Ikhlas',
+      venueAddr: 'Jl. Contoh Raya No. 123, Jakarta',
+      mapsUrl: 'https://maps.app.goo.gl/CHANGE_ME',
+      rsvpUrl: 'https://forms.gle/CHANGE_ME',
+      bankLabel: 'BCA a.n. Fulan',
+      bankNumber: '1234567890',
+    };
+  </script>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge">Undangan Pernikahan</span>
+      <h1 id="couple">Fulan & Fulana</h1>
+      <div class="sub" id="dateplace">Sabtu, 20 Desember 2025 · Gedung Serbaguna Al-Ikhlas</div>
+      <div class="cta">
+        <a class="btn primary" href="#detail">Buka Undangan</a>
+        <a class="btn" id="btnMaps" target="_blank" rel="noopener">Lihat Lokasi</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="detail" style="margin-top:28px;">
+    <section class="grid">
+      <div class="card half">
+        <h2>Waktu & Tempat</h2>
+        <p><strong id="dateLong">Sabtu, 20 Desember 2025, 10.00 WIB</strong><br/>
+        <span id="venue">Gedung Serbaguna Al-Ikhlas</span><br/>
+        <span class="muted" id="addr">Jl. Contoh Raya No. 123, Jakarta</span></p>
+        <p><a class="btn" id="btnMaps2" target="_blank" rel="noopener">Buka Google Maps</a></p>
+      </div>
+
+      <div class="card half">
+        <h2>Hitung Mundur</h2>
+        <div class="countdown" id="countdown">
+          <div class="tile"><div class="num" id="d">–</div><div class="label">Hari</div></div>
+          <div class="tile"><div class="num" id="h">–</div><div class="label">Jam</div></div>
+          <div class="tile"><div class="num" id="m">–</div><div class="label">Menit</div></div>
+          <div class="tile"><div class="num" id="s">–</div><div class="label">Detik</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>RSVP</h2>
+        <p>Kami mohon konfirmasi kehadiran Anda melalui tautan berikut:</p>
+        <p><a class="btn primary" id="btnRSVP" target="_blank" rel="noopener">Isi Form RSVP</a></p>
+      </div>
+
+      <div class="card">
+        <h2>Amplop Digital (Opsional)</h2>
+        <p>Doa adalah hadiah terbaik. Jika tetap ingin berbagi kebahagiaan, berikut rekening:</p>
+        <div class="bank">
+          <span id="bankLabel">BCA a.n. Fulan</span>
+          <code class="mono" id="bankNumber">1234567890</code>
+          <button class="btn" id="copyBtn" type="button">Salin</button>
+        </div>
+        <small class="muted">Privasi Anda terjaga; tidak ada pelacakan di halaman ini.</small>
+      </div>
+
+      <div class="card">
+        <h2>Galeri</h2>
+        <div class="gallery">
+          <img src="assets/photo1.jpg" alt="Foto 1" />
+          <img src="assets/photo2.jpg" alt="Foto 2" />
+          <img src="assets/photo3.jpg" alt="Foto 3" />
+          <img src="assets/photo4.jpg" alt="Foto 4" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Doa</h2>
+        <p>
+          <em>“Baarakallaahu laka wa baaraka ‘alaika wa jama‘a bainakumaa fii khair.”</em><br/>
+          <span class="muted">Semoga Allah memberkahimu dalam suka dan duka serta mempersatukan kalian berdua dalam kebaikan.</span>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small class="muted">Dibuat ringan & cepat. © <span id="year"></span></small>
+    </div>
+  </footer>
+
+  <script>
+    // ————— Init copy & countdown —————
+    (function(){
+      const fmtDateLong = (d) => d.toLocaleString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false, timeZoneName:'short' });
+
+      const target = new Date(CONF.dateISO);
+      document.getElementById('couple').textContent = CONF.couple;
+      document.getElementById('btnMaps').href = CONF.mapsUrl;
+      document.getElementById('btnMaps2').href = CONF.mapsUrl;
+      document.getElementById('btnRSVP').href = CONF.rsvpUrl;
+      document.getElementById('bankLabel').textContent = CONF.bankLabel;
+      document.getElementById('bankNumber').textContent = CONF.bankNumber;
+      document.getElementById('venue').textContent = CONF.venueName;
+      document.getElementById('addr').textContent = CONF.venueAddr;
+      document.getElementById('dateLong').textContent = fmtDateLong(target).replace(' pukul', ', ');
+      document.getElementById('dateplace').textContent = `${target.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' })} · ${CONF.venueName}`;
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      document.getElementById('copyBtn').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(CONF.bankNumber);
+          const old = document.getElementById('copyBtn').textContent;
+          document.getElementById('copyBtn').textContent = 'Tersalin';
+          setTimeout(()=>document.getElementById('copyBtn').textContent = old, 1200);
+        } catch(e) { alert('Gagal menyalin'); }
+      });
+
+      function tick(){
+        const now = new Date();
+        let diff = Math.max(0, target - now);
+        const sec = Math.floor(diff/1000)%60;
+        const min = Math.floor(diff/1000/60)%60;
+        const hr  = Math.floor(diff/1000/60/60)%24;
+        const day = Math.floor(diff/1000/60/60/24);
+        const pad = (n)=> String(n).padStart(2,'0');
+        document.getElementById('d').textContent = day;
+        document.getElementById('h').textContent = pad(hr);
+        document.getElementById('m').textContent = pad(min);
+        document.getElementById('s').textContent = pad(sec);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</body>
+</html>
