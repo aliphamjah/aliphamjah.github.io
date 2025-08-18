@@ -34,8 +34,8 @@
     /* Cover overlay */
     body.lock{ overflow:hidden }
     #cover{ position:fixed; inset:0; color:#fff; display:grid; place-items:center; z-index:50; background: #000; }
-    #cover::before{ content:""; position:absolute; inset:0; background:url('assets/hero.jpg') center/cover no-repeat; filter: brightness(0.45); }
-    #cover > .inner{ position:relative; text-align:center; padding:32px; }
+    #cover::before{ content:""; position:absolute; inset:0; background:url('assets/hero.jpg') center/cover no-repeat; filter: brightness(0.45); pointer-events:none; }
+    #cover > .inner{ position:relative; text-align:center; padding:32px; z-index:2; width:min(100%, 680px); }
     .badge{ display:inline-block; padding:6px 12px; border:1px solid rgba(255,255,255,.7); border-radius:999px; font-size:12px; letter-spacing:.14em; text-transform:uppercase }
     .title{ font-size:clamp(28px,6vw,64px); margin:12px 0 6px; letter-spacing:.02em }
     .dateDots{ letter-spacing:.3em; font-variant-numeric:tabular-nums; }
@@ -91,7 +91,7 @@
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace }
 
     /* Sticky audio */
-    .audioBar{ position:fixed; right:12px; bottom:12px; z-index:40; background:var(--paper); border:1px solid var(--border); padding:8px 12px; border-radius:999px; box-shadow:0 6px 24px rgba(0,0,0,.08); display:flex; align-items:center; gap:10px }
+    .audioBar{ position:fixed; right:12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index:40; background:var(--paper); border:1px solid var(--border); padding:8px 12px; border-radius:999px; box-shadow:0 6px 24px rgba(0,0,0,.08); display:flex; align-items:center; gap:10px }
     .audioDot{ width:8px; height:8px; border-radius:999px; background:#aaa }
     .audioDot.playing{ background:#22c55e; box-shadow:0 0 0 4px rgba(34,197,94,.15) }
 
@@ -99,6 +99,30 @@
     .btn:hover{ background:var(--accent-2); border-color:var(--accent-2) }
 
     footer{ text-align:center; color:#eee; padding:24px 0 40px; background:var(--bg); }
+  /* Mobile-friendly tweaks */
+    .wrap, .card, p, small { overflow-wrap:anywhere; word-break:break-word; }
+    .cta .btn{ min-width:140px }
+    @media (max-width: 720px){
+      :root{ --pad: 14px; }
+      header.hero{ min-height: 72vh }
+      .grid{ gap:12px }
+      .arch img{ height:380px }
+      .eventPanel{ padding:16px; border-radius:22px }
+      .eventPanel .big{ font-size: 38px }
+      .tile{ min-width:56px }
+      .gallery img{ height:140px }
+      .btn{ padding:12px 14px }
+    }
+    @media (max-width: 480px){
+      .arch img{ height:320px }
+      .title{ font-size: clamp(28px, 9vw, 48px) }
+      .cta{ gap:10px }
+      .cta .btn{ width:100%; }
+    }
+    @media (max-width: 360px){
+      .arch img{ height:280px }
+      .tile{ min-width:50px }
+    }
   </style>
 </head>
 <body class="lock">
@@ -175,13 +199,13 @@
     <div class="wrap grid">
       <h3 class="sectionTitle" style="grid-column:1/-1">We Found Love</h3>
       <div class="card half" style="text-align:center">
-        <figure class="arch"><img src="assets/photo1.jpg" alt="Farah"/></figure>
+        <figure class="arch"><img loading="lazy" decoding="async" src="assets/photo1.jpg" alt="Farah"/></figure>
         <h2 style="margin:12px 0 4px">Farah</h2>
         <p class="muted">Putri dari Bapak X & Ibu Y</p>
         <p><a class="muted" id="ig1" target="_blank" rel="noopener">Instagram</a></p>
       </div>
       <div class="card half" style="text-align:center">
-        <figure class="arch"><img src="assets/photo2.jpg" alt="Zikri"/></figure>
+        <figure class="arch"><img loading="lazy" decoding="async" src="assets/photo2.jpg" alt="Zikri"/></figure>
         <h2 style="margin:12px 0 4px">Zikri</h2>
         <p class="muted">Putra dari Bapak A & Ibu B</p>
         <p><a class="muted" id="ig2" target="_blank" rel="noopener">Instagram</a></p>
@@ -342,7 +366,7 @@
 
     // Gallery
     const g = el('gallery');
-    (CONF.gallery||[]).forEach(file=>{ const img = new Image(); img.src = `assets/${file}`; img.alt = 'Foto'; g.appendChild(img); });
+    (CONF.gallery||[]).forEach(file=>{ const img = new Image(); img.src = `assets/${file}`; img.alt = 'Foto'; img.loading = 'lazy'; img.decoding = 'async'; g.appendChild(img); });
 
     // Gift
     el('b1l').textContent = CONF.bank1.label; el('b1n').textContent = CONF.bank1.number;
@@ -388,11 +412,24 @@
     audio.src = CONF.bgm; audioBar.hidden = false; let playing = false; const setState = ()=>{ audioDot.classList.toggle('playing', playing); audioToggle.textContent = playing ? 'Hentikan Musik' : 'Putar Musik'; };
     audioToggle.onclick = async ()=>{ try{ playing ? await audio.pause() : await audio.play(); playing = !playing; setState(); }catch(e){} };
 
-    // Open invitation
-    const openInvitation = async ()=>{ document.body.classList.remove('lock'); el('cover').style.display = 'none'; try{ await audio.play(); playing = true; setState(); }catch(e){} };
-    el('openBtn').addEventListener('click', openInvitation);
-    // klik area cover juga membuka (kecuali klik link)
-    $('#cover').addEventListener('click', (e)=>{ if(e.target.closest('a')||e.target.closest('button')) return; openInvitation(); });
+    // Open invitation (robust)
+    const openInvitation = async ()=>{
+      document.body.classList.remove('lock');
+      el('cover').style.display = 'none';
+      try{ await audio.play(); playing = true; setState(); }catch(e){}
+    };
+    const coverEl = $('#cover');
+    const btnOpen = el('openBtn');
+    if(btnOpen) btnOpen.addEventListener('click', openInvitation);
+    if(coverEl){
+      coverEl.addEventListener('click', openInvitation);
+      coverEl.addEventListener('touchstart', openInvitation, {passive:true});
+    }
+    document.addEventListener('keydown', (e)=>{
+      if((e.key === 'Enter' || e.key === ' ') && coverEl && coverEl.style.display !== 'none'){
+        openInvitation();
+      }
+    });
 
     // Year footer
     el('year').textContent = new Date().getFullYear();
