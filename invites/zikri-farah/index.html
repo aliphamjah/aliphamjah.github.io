@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan – Zikri & Farah</title>
+  <meta name="description" content="Undangan pernikahan (dummy) – Zikri & Farah" />
+  <meta property="og:title" content="Undangan Pernikahan – Zikri & Farah" />
+  <meta property="og:description" content="Contoh halaman undangan. Semua data di sini adalah dummy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* === Palette disesuaikan dengan capture (taupe/beige) === */
+    :root{
+      --maxw: 980px; --pad: 16px;
+      --bg: #cdbbab;           /* taupe band */
+      --bg-soft:#dacbbb;       /* lebih terang */
+      --paper:#ffffff;         /* kartu putih */
+      --ink:#2e2b28;           /* teks utama */
+      --muted:#6d6965;         /* teks sekunder */
+      --accent:#b49a83;        /* tombol / aksen */
+      --accent-2:#a08871;      /* hover */
+      --border:#e7dfd7;
+    }
+    *{ box-sizing:border-box }
+    html, body{ margin:0; padding:0; color:var(--ink); background:var(--bg); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    h1,h2,h3,.display{ font-family:'Playfair Display', serif; }
+    a{ color:inherit; text-decoration:none }
+    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: var(--pad); }
+
+    /* Cover overlay */
+    body.lock{ overflow:hidden }
+    #cover{ position:fixed; inset:0; color:#fff; display:grid; place-items:center; z-index:50; background: #000; }
+    #cover::before{ content:""; position:absolute; inset:0; background:url('assets/hero.jpg') center/cover no-repeat; filter: brightness(0.45); }
+    #cover > .inner{ position:relative; text-align:center; padding:32px; }
+    .badge{ display:inline-block; padding:6px 12px; border:1px solid rgba(255,255,255,.7); border-radius:999px; font-size:12px; letter-spacing:.14em; text-transform:uppercase }
+    .title{ font-size:clamp(28px,6vw,64px); margin:12px 0 6px; letter-spacing:.02em }
+    .dateDots{ letter-spacing:.3em; font-variant-numeric:tabular-nums; }
+    .sub{ opacity:.95; font-size: clamp(14px, 2.5vw, 18px) }
+    .cta{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
+    .btn{ border:1px solid currentColor; padding:12px 18px; border-radius:14px; cursor:pointer; text-decoration:none; }
+    .btn.primary{ background:#fff; color:#000; border-color:#fff; font-weight:600 }
+
+    /* Hero setelah dibuka, dengan gradasi ke taupe */
+    header.hero{ position:relative; min-height:64vh; display:grid; place-items:center; text-align:center; color:#fff }
+    header.hero::before{ content:""; position:absolute; inset:0; background:
+      linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25) 50%, rgba(205,187,171,.9)),
+      url('assets/hero.jpg') center/cover no-repeat; }
+    header.hero > *{ position:relative; z-index:1 }
+
+    /* Band putih agar mirip potongan section di capture */
+    .band{ background:var(--paper); color:var(--ink); }
+    .band.soft{ background:var(--bg-soft); }
+    .band .sectionTitle{ text-align:center; margin: 0 0 18px; letter-spacing:.2em; text-transform:uppercase; font-weight:600; color:#3b332c }
+
+    h1{ font-size: clamp(26px, 5.5vw, 48px) }
+    h2{ font-size: clamp(20px, 3.5vw, 30px) }
+
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr) }
+    .card{ grid-column:1/-1; border:1px solid var(--border); border-radius:16px; padding:18px; background:var(--paper); box-shadow:0 10px 30px rgba(0,0,0,.04) }
+    @media (min-width: 720px){ .half{ grid-column: span 6 } }
+
+    /* Arch image cards (for bride/groom) */
+    .arch{ border:1px solid var(--border); border-radius:999px 999px 18px 18px / 68% 68% 18px 18px; overflow:hidden; background:#f6f2ee; box-shadow:0 8px 30px rgba(0,0,0,.08); }
+    .arch img{ width:100%; height:420px; object-fit:cover; display:block; }
+
+    /* Event marble card */
+    .eventPanel{ background:
+      radial-gradient(1200px 400px at -10% -10%, #f8f4f1 0, #efe9e3 50%, #e8e1db 100%);
+      border:1px solid var(--border); border-radius:28px; padding:22px; text-align:center; }
+    .eventPanel .titleSmall{ letter-spacing:.24em; text-transform:uppercase; font-size:12px; color:#5b5149; }
+    .eventPanel .big{ font-size:42px; line-height:1; font-weight:700 }
+    .eventPanel .muted{ color:#746e69 }
+    .eventBtns{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px }
+
+    /* Countdown */
+    .countdown{ font-variant-numeric: tabular-nums; display:flex; gap:10px; justify-content:center }
+    .tile{ text-align:center; min-width:70px }
+    .num{ font-size: 32px; font-weight:600 }
+    .label{ font-size: 12px; color:#666 }
+
+    /* Gallery */
+    .gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:10px }
+    .gallery img{ width:100%; height:180px; object-fit:cover; border-radius:12px }
+
+    /* Gift & bank */
+    .bank{ display:flex; align-items:center; gap:10px; flex-wrap:wrap }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace }
+
+    /* Sticky audio */
+    .audioBar{ position:fixed; right:12px; bottom:12px; z-index:40; background:var(--paper); border:1px solid var(--border); padding:8px 12px; border-radius:999px; box-shadow:0 6px 24px rgba(0,0,0,.08); display:flex; align-items:center; gap:10px }
+    .audioDot{ width:8px; height:8px; border-radius:999px; background:#aaa }
+    .audioDot.playing{ background:#22c55e; box-shadow:0 0 0 4px rgba(34,197,94,.15) }
+
+    .btn, .btn.primary{ border-color:var(--accent); color:#fff; background:var(--accent) }
+    .btn:hover{ background:var(--accent-2); border-color:var(--accent-2) }
+
+    footer{ text-align:center; color:#eee; padding:24px 0 40px; background:var(--bg); }
+  </style>
+</head>
+<body class="lock">
+  <!-- =====================
+       KONFIGURASI CEPAT (DUMMY)
+       ===================== -->
+  <script>
+    const CONF = {
+      couple: 'Zikri & Farah',
+      dateISO: '2030-01-11T10:00:00+07:00', // Akad (dummy, WIB)
+      resepsiISO: '2030-01-11T13:00:00+07:00',
+      venueName: 'Gedung Serbaguna Contoh, Jakarta',
+      mapsUrl: '#',
+      rsvpUrl: '#',
+      waGiftUrl: '#',
+      bank1: { label: 'Bank Contoh a.n. Nama Dummy 1', number: '0000000000' },
+      bank2: { label: 'E-Wallet Contoh a.n. Nama Dummy 2', number: '0000000000' },
+      bank3: { label: 'E-Wallet Contoh a.n. Nama Dummy 3', number: '0000000000' },
+      shipTo: 'Nama Dummy — Alamat Contoh, Kota, Provinsi',
+      gallery: ['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg'],
+      bgm: 'assets/bgm.mp3',
+      ig1: '#', ig2: '#',
+      verse: '“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri…”',
+      verseRef: 'Q.S. Ar-Rum : 21'
+    };
+  </script>
+
+  <!-- COVER / OPEN INVITATION -->
+  <div id="cover">
+    <div class="inner">
+      <span class="badge">The Wedding of</span>
+      <div class="title display" id="cv_couple">Zikri & Farah</div>
+      <div class="dateDots" id="cv_date">11 . 01 . 2030</div>
+      <p class="sub" style="margin-top:10px">Kepada Yth:<br/><strong id="guest">Sahabat kami</strong></p>
+      <div class="cta">
+        <button class="btn primary" id="openBtn" type="button">Open Invitation</button>
+      </div>
+      <div class="muted" style="margin-top:12px;opacity:.9">*Mohon maaf bila ada kesalahan penulisan nama/gelar</div>
+    </div>
+  </div>
+
+  <!-- HERO (setelah dibuka) -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge" style="border-color:rgba(255,255,255,.6)">The Wedding of</span>
+      <h1 id="couple">Zikri & Farah</h1>
+      <div class="sub" id="dateplace">Jumat, 11 Januari 2030 · Jakarta</div>
+      <div class="cta">
+        <a class="btn" href="#our">Our Wedding</a>
+        <a class="btn" id="btnMaps" target="_blank" rel="noopener">Google Maps</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- AUDIO STICKY -->
+  <div class="audioBar" id="audioBar" hidden>
+    <div class="audioDot" id="audioDot"></div>
+    <button class="btn" id="audioToggle" type="button">Putar Musik</button>
+    <audio id="bgm" src="" preload="none" loop></audio>
+  </div>
+
+  <!-- BAND: OUR WEDDING (PUTIH) -->
+  <section class="band">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">Our Wedding</h3>
+      <div class="card" style="text-align:center">
+        <p class="muted">Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara Pernikahan kami.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: WE FOUND LOVE (TAUPE SOFT) -->
+  <section class="band soft">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">We Found Love</h3>
+      <div class="card half" style="text-align:center">
+        <figure class="arch"><img src="assets/photo1.jpg" alt="Farah"/></figure>
+        <h2 style="margin:12px 0 4px">Farah</h2>
+        <p class="muted">Putri dari Bapak X & Ibu Y</p>
+        <p><a class="muted" id="ig1" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+      <div class="card half" style="text-align:center">
+        <figure class="arch"><img src="assets/photo2.jpg" alt="Zikri"/></figure>
+        <h2 style="margin:12px 0 4px">Zikri</h2>
+        <p class="muted">Putra dari Bapak A & Ibu B</p>
+        <p><a class="muted" id="ig2" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: WEDDING EVENT (PUTIH) -->
+  <section class="band">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">Wedding Event</h3>
+      <div class="half">
+        <div class="eventPanel">
+          <div class="titleSmall">AKAD</div>
+          <div class="big" id="akad_day">11</div>
+          <div class="muted" id="akad_mon">JAN 2030</div>
+          <p style="margin:8px 0 0"><strong id="akadDate">Jumat, 11 Januari 2030 · 10.00 WIB</strong></p>
+          <p class="muted" id="venue1">Gedung Serbaguna Contoh, Jakarta</p>
+          <div class="eventBtns"><a class="btn" id="btnMaps2" target="_blank" rel="noopener">Klik Maps</a></div>
+        </div>
+      </div>
+      <div class="half">
+        <div class="eventPanel">
+          <div class="titleSmall">RESEPSI</div>
+          <div class="big" id="resep_day">11</div>
+          <div class="muted" id="resep_mon">JAN 2030</div>
+          <p style="margin:8px 0 0"><strong id="resepDate">Jumat, 11 Januari 2030 · 13.00 WIB</strong></p>
+          <p class="muted" id="venue2">Gedung Serbaguna Contoh, Jakarta</p>
+          <div class="eventBtns"><a class="btn" id="btnCalendar" target="_blank" rel="noopener">Save Calendar</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: GALLERY (PUTIH) -->
+  <section class="band">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">moment – Gallery</h3>
+      <div class="card" style="grid-column:1/-1">
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: COUNTDOWN (TAUPE SOFT) -->
+  <section class="band soft">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">Event Countdown</h3>
+      <div class="card" style="text-align:center">
+        <div class="countdown" id="countdown">
+          <div class="tile"><div class="num" id="d">–</div><div class="label">Hari</div></div>
+          <div class="tile"><div class="num" id="h">–</div><div class="label">Jam</div></div>
+          <div class="tile"><div class="num" id="m">–</div><div class="label">Menit</div></div>
+          <div class="tile"><div class="num" id="s">–</div><div class="label">Detik</div></div>
+        </div>
+        <p style="margin-top:12px"><a class="btn" id="btnCalendar2" target="_blank" rel="noopener">Save Calendar</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: LOVE STORY (PUTIH) -->
+  <section class="band">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">Love Story</h3>
+      <div class="card">
+        <ul class="muted">
+          <li>Pertama kenal — 2024</li>
+          <li>Lamaran — 2025</li>
+          <li>Menikah — 2030</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: WEDDING GIFT (PUTIH) -->
+  <section class="band">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">wedding gift</h3>
+      <div class="card">
+        <p class="muted">Doa restu anda merupakan karunia yang sangat berarti bagi kami. Jika memberi adalah ungkapan tanda kasih, dapat memberi kado secara cashless.</p>
+        <div class="bank"><span id="b1l">-</span> <code class="mono" id="b1n">-</code> <button class="btn" data-copy="b1n">Salin Rekening</button></div>
+        <div class="bank"><span id="b2l">-</span> <code class="mono" id="b2n">-</code> <button class="btn" data-copy="b2n">Salin Rekening</button></div>
+        <div class="bank"><span id="b3l">-</span> <code class="mono" id="b3n">-</code> <button class="btn" data-copy="b3n">Salin Rekening</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND: KIRIM HADIAH + RSVP (TAUPE SOFT) -->
+  <section class="band soft">
+    <div class="wrap grid">
+      <h3 class="sectionTitle" style="grid-column:1/-1">Kirim Hadiah</h3>
+      <div class="card">
+        <p id="shipTo">—</p>
+        <div class="cta">
+          <button class="btn" id="copyAddr" type="button">Salin Alamat</button>
+          <a class="btn" id="waGift" target="_blank" rel="noopener">Konfirmasi Wedding Gift</a>
+        </div>
+      </div>
+
+      <h3 class="sectionTitle" style="grid-column:1/-1">RSVP & Wishes</h3>
+      <div class="card">
+        <p>Beri konfirmasi & doa restu melalui tautan berikut, atau kirim ucapan via WhatsApp.</p>
+        <p><a class="btn" id="btnRSVP" target="_blank" rel="noopener">Isi RSVP</a></p>
+        <div style="margin-top:8px">
+          <textarea id="wish" rows="3" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:10px" placeholder="Tulis ucapan singkat…"></textarea>
+          <div class="cta" style="justify-content:flex-start;margin-top:8px">
+            <a class="btn" id="sendWA" target="_blank" rel="noopener">Kirim Ucapan via WA</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <small style="color:#3b332c">Digital Invitation demo · © <span id="year"></span></small>
+    </div>
+  </footer>
+
+  <script>
+    // Helpers
+    const $ = (sel)=>document.querySelector(sel);
+    const $$ = (sel)=>Array.from(document.querySelectorAll(sel));
+    const el = (id)=>document.getElementById(id);
+    const fmtDateDots = (d)=>{ const dd=String(d.getDate()).padStart(2,'0'); const mm=String(d.getMonth()+1).padStart(2,'0'); const yy=d.getFullYear(); return `${dd} . ${mm} . ${yy}`; };
+    const fmtDateLong = (d)=> d.toLocaleString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false });
+    const monShort = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGS','SEP','OKT','NOV','DES'];
+
+    // Init data
+    const akad = new Date(CONF.dateISO);
+    const resepsi = new Date(CONF.resepsiISO || CONF.dateISO);
+    const params = new URLSearchParams(location.search);
+    const toName = (params.get('to')||'Sahabat kami').replace(/\+/g,' ');
+
+    // Cover
+    el('cv_couple').textContent = CONF.couple;
+    el('cv_date').textContent = fmtDateDots(akad);
+    el('guest').textContent = toName;
+
+    // Hero + detail
+    el('couple').textContent = CONF.couple;
+    el('dateplace').textContent = `${akad.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' })} · ${CONF.venueName}`;
+    el('btnMaps').href = CONF.mapsUrl;
+    el('btnMaps2').href = CONF.mapsUrl;
+    el('akadDate').textContent = `${fmtDateLong(akad).replace(' pukul', ' ·') } WIB`;
+    el('venue1').textContent = CONF.venueName;
+    el('resepDate').textContent = `${fmtDateLong(resepsi).replace(' pukul', ' ·') } WIB`;
+    el('venue2').textContent = CONF.venueName;
+
+    // Event date captions (big number + month)
+    el('akad_day').textContent = String(akad.getDate()).padStart(2,'0');
+    el('akad_mon').textContent = `${monShort[akad.getMonth()]} ${akad.getFullYear()}`;
+    el('resep_day').textContent = String(resepsi.getDate()).padStart(2,'0');
+    el('resep_mon').textContent = `${monShort[resepsi.getMonth()]} ${resepsi.getFullYear()}`;
+
+    // Instagram & links
+    $('#ig1').href = CONF.ig1; $('#ig2').href = CONF.ig2;
+
+    // Gallery
+    const g = el('gallery');
+    (CONF.gallery||[]).forEach(file=>{ const img = new Image(); img.src = `assets/${file}`; img.alt = 'Foto'; g.appendChild(img); });
+
+    // Gift
+    el('b1l').textContent = CONF.bank1.label; el('b1n').textContent = CONF.bank1.number;
+    el('b2l').textContent = CONF.bank2.label; el('b2n').textContent = CONF.bank2.number;
+    el('b3l').textContent = CONF.bank3.label; el('b3n').textContent = CONF.bank3.number;
+    el('waGift').href = CONF.waGiftUrl;
+    el('shipTo').textContent = CONF.shipTo;
+
+    // Copy buttons
+    $$("[data-copy]").forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const target = el(btn.getAttribute('data-copy')).textContent;
+        try{ await navigator.clipboard.writeText(target); const t=btn.textContent; btn.textContent='Tersalin'; setTimeout(()=>btn.textContent=t,1200);}catch(e){ alert('Gagal menyalin'); }
+      });
+    });
+    el('copyAddr').onclick = async ()=>{
+      try{ await navigator.clipboard.writeText(CONF.shipTo); const t=el('copyAddr').textContent; el('copyAddr').textContent='Tersalin'; setTimeout(()=>el('copyAddr').textContent=t,1200);}catch(e){ alert('Gagal menyalin'); }
+    };
+
+    // RSVP
+    el('btnRSVP').href = CONF.rsvpUrl;
+
+    // Calendar links
+    const toGCal = (start)=>{ const end = new Date(start.getTime()+2*60*60*1000); const pad=(n)=>String(n).padStart(2,'0'); const fmt=(dt)=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`; const dates = `${fmt(start)}/${fmt(end)}`; const text = encodeURIComponent(`Pernikahan ${CONF.couple}`); const details = encodeURIComponent('Mohon doa & kehadirannya'); const location = encodeURIComponent(CONF.venueName); return `https://www.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dates}&details=${details}&location=${location}`; };
+    el('btnCalendar').href = toGCal(resepsi);
+    el('btnCalendar2').href = toGCal(resepsi);
+
+    // Countdown
+    function tick(){
+      const now = new Date();
+      let diff = Math.max(0, akad - now);
+      const sec = Math.floor(diff/1000)%60;
+      const min = Math.floor(diff/1000/60)%60;
+      const hr  = Math.floor(diff/1000/60/60)%24;
+      const day = Math.floor(diff/1000/60/60/24);
+      const pad = (n)=> String(n).padStart(2,'0');
+      el('d').textContent = day; el('h').textContent = pad(hr); el('m').textContent = pad(min); el('s').textContent = pad(sec);
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Audio
+    const audio = el('bgm'); const audioBar = el('audioBar'); const audioDot = el('audioDot'); const audioToggle = el('audioToggle');
+    audio.src = CONF.bgm; audioBar.hidden = false; let playing = false; const setState = ()=>{ audioDot.classList.toggle('playing', playing); audioToggle.textContent = playing ? 'Hentikan Musik' : 'Putar Musik'; };
+    audioToggle.onclick = async ()=>{ try{ playing ? await audio.pause() : await audio.play(); playing = !playing; setState(); }catch(e){} };
+
+    // Open invitation
+    const openInvitation = async ()=>{ document.body.classList.remove('lock'); el('cover').style.display = 'none'; try{ await audio.play(); playing = true; setState(); }catch(e){} };
+    el('openBtn').addEventListener('click', openInvitation);
+    // klik area cover juga membuka (kecuali klik link)
+    $('#cover').addEventListener('click', (e)=>{ if(e.target.closest('a')||e.target.closest('button')) return; openInvitation(); });
+
+    // Year footer
+    el('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
