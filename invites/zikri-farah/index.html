@@ -12,6 +12,7 @@
 .fab-left{left:calc(1rem + env(safe-area-inset-left))}
 @media (min-width:768px){.fab-right{right:1.5rem}.fab-left{left:1.5rem}}
 .eq{pointer-events:none}.audioBar::after{pointer-events:none}
+.rsvp{--rsvp-bg:#fff;--rsvp-ink:#3b332c;--rsvp-soft:#b49a83}.rsvp h3{letter-spacing:.18em}.rsvp-card{background:var(--rsvp-bg);border:1px solid #e7dfd7;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.06)}.rsvp-input{width:100%;border:1px solid #e7dfd7;border-radius:12px;padding:.9rem 1rem;background:#fff}.rsvp-input:focus{outline:none;border-color:#d7c9bd;box-shadow:0 0 0 4px rgba(180,154,131,.18)}.rsvp-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--rsvp-soft);color:#fff;border-radius:12px;padding:.8rem 1.1rem;box-shadow:0 10px 22px rgba(180,154,131,.28)}.rsvp-btn[disabled]{opacity:.6}.rsvp-stat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}.rsvp-chip{background:#b49a83;color:#fff;border-radius:12px;padding:.7rem .6rem;text-align:center}.rsvp-chip .num{font-weight:700;font-size:1.25rem}.rsvp-chip .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9}.rsvp-list .item{display:grid;grid-template-columns:auto 1fr;gap:.75rem;padding:1rem;border-top:1px solid #efe7df}.rsvp-avatar{width:36px;height:36px;border-radius:9999px;background:#efe7df;display:grid;place-items:center;font-weight:700;color:#7c6d60}.rsvp-badge{display:inline-flex;gap:.4rem;align-items:center;border:1px solid #e7dfd7;border-radius:9999px;padding:.3rem .6rem;background:#fff;color:#6e665f;font-size:.7rem}
 </style>
 </head>
 <body class="lock font-sans text-[#2e2b28] bg-taupe">
@@ -173,6 +174,76 @@
 
   <!-- LIGHTBOX -->
   <div id="lightbox" class="fixed inset-0 z-60 grid place-items-center p-4 bg-black/85" hidden><img id="lbImg" alt="Preview" class="max-w-[92vw] max-h-[90vh] rounded-xl shadow-[0_12px_44px_rgba(0,0,0,.5)]"/></div>
+  <!-- RSVP & WISHES (layout only) -->
+  <section id="rsvp" class="rsvp py-14 bg-white/60">
+    <div class="max-w-[980px] mx-auto px-4">
+      <h3 class="text-center text-[#3b332c] font-semibold tracking-[.2em] uppercase reveal">RSVP & Wishes</h3>
+      <p class="text-center text-sm text-[#6f6962] mt-2 max-w-[620px] mx-auto reveal" data-delay="60ms">
+        Beri ucapan & konfirmasi kehadiran. Data tersimpan aman. (Versi demo — tombol belum mengirim)
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4 mt-8 reveal" data-delay="80ms">
+        <div class="rsvp-chip"><div class="num">5</div><div class="lbl">Hadir</div></div>
+        <div class="rsvp-chip"><div class="num">7</div><div class="lbl">Tidak Hadir</div></div>
+        <div class="rsvp-chip"><div class="num">2</div><div class="lbl">Masih Ragu</div></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <!-- Form preview -->
+        <div class="rsvp-card p-5 reveal" data-anim="fade-right" data-delay="120ms">
+          <div class="flex items-center justify-between mb-3">
+            <div class="rsvp-badge"><img alt="" src="https://unpkg.com/heroicons@2.1.1/20/solid/chat-bubble-left-right.svg" class="w-4 h-4"/> Form Ucapan</div>
+            <div class="rsvp-badge"><img alt="" src="https://unpkg.com/heroicons@2.1.1/20/solid/user.svg" class="w-4 h-4"/> Demo</div>
+          </div>
+          <div class="space-y-3">
+            <input class="rsvp-input" placeholder="Nama" disabled>
+            <textarea class="rsvp-input min-h-[120px]" placeholder="Ucapan" disabled></textarea>
+            <select class="rsvp-input" disabled>
+              <option>Konfirmasi Kehadiran</option>
+              <option>Hadir</option>
+              <option>Tidak Hadir</option>
+              <option>Masih Ragu</option>
+            </select>
+            <button class="rsvp-btn w-full" disabled>
+              <img alt="" src="https://unpkg.com/heroicons@2.1.1/20/solid/paper-airplane.svg" class="w-4 h-4"/>
+              Kirim
+            </button>
+            <p class="text-xs text-[#7b736c]">*Fungsi submit akan diaktifkan di branch fitur. Layout ini nonaktif untuk uji visual.</p>
+          </div>
+        </div>
+
+        <!-- List preview -->
+        <div class="rsvp-card p-5 reveal" data-anim="fade-left" data-delay="140ms">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="rsvp-badge"><img alt="" src="https://unpkg.com/heroicons@2.1.1/20/solid/heart.svg" class="w-4 h-4"/> 19 Comments</span>
+          </div>
+          <div class="rsvp-list">
+            <div class="item">
+              <div class="rsvp-avatar">V</div>
+              <div>
+                <div class="flex items-center gap-2"><strong>Vasda</strong><span class="rsvp-badge">Hadir</span></div>
+                <p class="text-sm text-[#5d5853]">Happy wedding! Semoga menjadi keluarga sakinah, mawaddah, warahmah.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="rsvp-avatar">M</div>
+              <div>
+                <div class="flex items-center gap-2"><strong>Momooo</strong><span class="rsvp-badge">Ragu</span></div>
+                <p class="text-sm text-[#5d5853]">InsyaAllah hadir kalau tidak bentrok jadwal 🙏</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="rsvp-avatar">A</div>
+              <div>
+                <div class="flex items-center gap-2"><strong>Anisa</strong><span class="rsvp-badge">Tidak Hadir</span></div>
+                <p class="text-sm text-[#5d5853]">Selamat ya! Maaf berhalangan, kirim doa terbaik 🤍</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="relative bg-gradient-to-b from-taupe-soft to-taupe py-12 md:py-20 text-[#3b332c]"><div class="absolute inset-x-0 -top-3 h-[22px] opacity-25 bg-repeat bg-[length:56px_22px] bg-sasi"></div>
@@ -242,4 +313,5 @@ el('year').textContent=new Date().getFullYear();el('footCouple')&&(el('footCoupl
   window.__lastTestResults = tests;
 })();})();</script>
 <script>// ===== Reveal on scroll =====
-(function setupReveals(){const els=document.querySelectorAll('.reveal');const IO=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const t=en.target;const d=t.dataset.delay||'0s';t.style.transitionDelay=d;t.classList.add('is-visible');IO.unobserve(t)}})},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});els.forEach(e=>IO.observe(e));document.querySelectorAll('#countdown .cdTile').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);document.querySelectorAll('#love article.reveal').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);window.__observe=(node)=>IO.observe(node)})();</script></body></html>
+(function setupReveals(){const els=document.querySelectorAll('.reveal');const IO=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const t=en.target;const d=t.dataset.delay||'0s';t.style.transitionDelay=d;t.classList.add('is-visible');IO.unobserve(t)}})},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});els.forEach(e=>IO.observe(e));document.querySelectorAll('#countdown .cdTile').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);document.querySelectorAll('#love article.reveal').forEach((e,i)=>e.dataset.delay=`${80*i+50}ms`);window.__observe=(node)=>IO.observe(node)})();</script>
+</body></html>
