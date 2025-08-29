@@ -22,6 +22,37 @@
     .personInfo .tagChip{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
     .personInfo .igBtn{display:inline-flex;align-items:center;gap:6px;font-weight:500;margin-top:8px;border-bottom:1px dashed #b49a83}
     .personName{font-family:'Playfair Display',serif}
+      /* Event cards (polish & equal height) */
+    #event .grid{align-items:stretch}
+    .eventCard{display:flex;flex-direction:column;justify-content:flex-start;gap:6px;height:100%;border:1px solid #e7dfd7;border-radius:28px;background:linear-gradient(180deg,#f7f2ec,#efe7df);box-shadow:0 12px 40px rgba(0,0,0,.08);padding:28px 24px;text-align:center}
+    .eventCard .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#5b5149}
+    #akad_day,#resep_day{font:700 48px/1 'Inter',system-ui;color:#2e2b28;margin-top:2px}
+    #akad_mon,#resep_mon{font-weight:600;color:#8a847e;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+    #akadDate,#resepDate{font-weight:700;color:#2e2b28}
+    #venue1,#venue2{color:#6f675f;line-height:1.55}
+    .eventCard .cta{margin-top:auto;display:flex;justify-content:center;gap:10px}
+    .btn-soft{display:inline-flex;align-items:center;gap:8px;padding:.7rem 1rem;border-radius:12px;background:#b49a83;color:#fff;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+      /* Event cards (polish & equal height) */
+    #event .grid{align-items:stretch}
+    .eventCard{display:flex;flex-direction:column;justify-content:flex-start;gap:6px;height:100%;border:1px solid #e7dfd7;border-radius:28px;background:linear-gradient(180deg,#f7f2ec,#efe7df);box-shadow:0 12px 40px rgba(0,0,0,.08);padding:28px 24px;text-align:center}
+    .eventCard .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#5b5149}
+    #akad_day,#resep_day{font:700 48px/1 'Inter',system-ui;color:#2e2b28;margin-top:2px}
+    #akad_mon,#resep_mon{font-weight:600;color:#8a847e;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+    #venue1,#venue2{color:#6f675f;line-height:1.55}
+    .eventCard .cta{margin-top:auto;display:flex;justify-content:center;gap:10px}
+    .btn-soft{display:inline-flex;align-items:center;gap:8px;padding:.7rem 1rem;border-radius:12px;background:#b49a83;color:#fff;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+    /* Fine hierarchy for date/time & venue */
+    .eventDate{margin-top:6px;font-weight:700}
+    .eventTime{font-weight:700;color:#2e2b28}
+    .venue.name{font-weight:600;color:#3b332c}
+    .venue.addr,.venue.city{color:#6f675f}
+      /* Dramatic but classy music button */
+    #musicBtn{position:fixed;bottom:1rem;left:1rem;z-index:70;width:48px;height:48px;border-radius:9999px;color:#fff;background:radial-gradient(120% 120% at 30% 20%, #b49a83 0%, #a08871 100%);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px) saturate(120%);box-shadow:0 10px 28px rgba(0,0,0,.18), inset 0 -10px 18px rgba(255,255,255,.12);transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease}
+    #musicBtn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.22), inset 0 -10px 18px rgba(255,255,255,.12)}
+    #musicBtn.is-playing{box-shadow:0 12px 36px rgba(180,154,131,.45), inset 0 -10px 18px rgba(255,255,255,.12)}
+    #musicBtn.is-playing::after{content:"";position:absolute;inset:-8px;border-radius:9999px;border:2px solid rgba(180,154,131,.45);animation:musicPulse 1.8s ease-out infinite;pointer-events:none}
+    #musicBtn svg{display:block;width:18px;height:18px}
+    @keyframes musicPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
   </style>
 </head>
 <body class="lock font-sans text-[#2e2b28] bg-taupe">
@@ -72,8 +103,8 @@
 
   <!-- SECTION: WEDDING EVENT (struktur asli) -->
   <section id="event" class="bg-white text-[#2e2b28] py-12 md:py-20"><div class="max-w-[980px] mx-auto px-4 grid grid-cols-12 gap-4"><h3 class="col-span-12 text-center tracking-[.2em] uppercase font-semibold text-[#3b332c] mb-4">Wedding Event</h3>
-    <div class="col-span-12 md:col-span-6"><div class="bg-gradient-to-br reveal from-[#f8f4f1] via-[#efe9e3] to-[#e8e1db] border border-taupe-border rounded-3xl px-5 py-6 text-center max-w-[540px] mx-auto shadow-soft"><div class="text-xs tracking-[.24em] uppercase text-[#5b5149]">AKAD</div><div id="akad_day" class="text-[42px] leading-none font-bold">11</div><div id="akad_mon" class="text-[#746e69]">JAN 2030</div><p><strong id="akadDate">Jumat, 11 Januari 2030 · 10.00 WIB</strong></p><p id="venue1" class="text-[#746e69]">Gedung Serbaguna Contoh, Jakarta</p><div class="mt-2 flex flex-wrap justify-center gap-2"><a id="btnMaps2" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium bg-taupe-accent text-white hover:bg-taupe-accent2"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/map-pin.svg" class="w-5 h-5 invert"/><span>Klik Maps</span></a></div></div></div>
-    <div class="col-span-12 md:col-span-6"><div class="bg-gradient-to-br reveal from-[#f8f4f1] via-[#efe9e3] to-[#e8e1db] border border-taupe-border rounded-3xl px-5 py-6 text-center max-w-[540px] mx-auto shadow-soft"><div class="text-xs tracking-[.24em] uppercase text-[#5b5149]">RESEPSI</div><div id="resep_day" class="text-[42px] leading-none font-bold">11</div><div id="resep_mon" class="text-[#746e69]">JAN 2030</div><p><strong id="resepDate">Jumat, 11 Januari 2030 · 13.00 WIB</strong></p><p id="venue2" class="text-[#746e69]">Gedung Serbaguna Contoh, Jakarta</p><div class="mt-2 flex flex-wrap justify-center gap-2"><a id="btnCalendar" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium bg-taupe-accent text-white hover:bg-taupe-accent2"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/calendar-days.svg" class="w-5 h-5 invert"/><span>Save Calendar</span></a></div></div></div>
+    <div class="col-span-12 md:col-span-6"><div class="bg-gradient-to-br reveal from-[#f8f4f1] via-[#efe9e3] to-[#e8e1db] border border-taupe-border rounded-3xl px-5 py-6 text-center max-w-[540px] mx-auto shadow-soft eventCard h-full"><div class="text-xs tracking-[.24em] uppercase text-[#5b5149] eyebrow">AKAD</div><div id="akad_day" class="text-[42px] leading-none font-bold">11</div><div id="akad_mon" class="text-[#746e69]">JAN 2030</div><p><strong id="akadDate">Jumat, 11 Januari 2030 · 10.00 WIB</strong></p><p id="venue1" class="text-[#746e69]">Gedung Serbaguna Contoh, Jakarta</p><div class="mt-2 flex flex-wrap justify-center gap-2 cta"><a id="btnMaps2" target="_blank" rel="noopener" class="btn-soft inline-flex items-center gap-2"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/map-pin.svg" class="w-5 h-5 invert"/><span>Klik Maps</span></a></div></div></div>
+    <div class="col-span-12 md:col-span-6"><div class="bg-gradient-to-br reveal from-[#f8f4f1] via-[#efe9e3] to-[#e8e1db] border border-taupe-border rounded-3xl px-5 py-6 text-center max-w-[540px] mx-auto shadow-soft eventCard h-full"><div class="text-xs tracking-[.24em] uppercase text-[#5b5149] eyebrow">RESEPSI</div><div id="resep_day" class="text-[42px] leading-none font-bold">11</div><div id="resep_mon" class="text-[#746e69]">JAN 2030</div><p><strong id="resepDate">Jumat, 11 Januari 2030 · 13.00 WIB</strong></p><p id="venue2" class="text-[#746e69]">Gedung Serbaguna Contoh, Jakarta</p><div class="mt-2 flex flex-wrap justify-center gap-2 cta"><a id="btnCalendar" target="_blank" rel="noopener" class="btn-soft inline-flex items-center gap-2"><img alt="" aria-hidden="true" src="https://unpkg.com/heroicons@2.1.1/20/solid/calendar-days.svg" class="w-5 h-5 invert"/><span>Save Calendar</span></a></div></div></div>
   </div></section>
 
   <!-- SECTION: COUNTDOWN (struktur asli) -->
@@ -183,6 +214,21 @@ const crest=el('crest');if(crest){const initials=CONF.couple.split('&').map(s=>s
 el('verseText')&&(el('verseText').textContent=CONF.verse);el('verseRef')&&(el('verseRef').textContent=CONF.verseRef);
 el('footCouple')&&(el('footCouple').textContent=CONF.couple);el('year').textContent=new Date().getFullYear();
 
+// ====== Event formatting – split date/time & tidy venue hierarchy
+(function(){
+  const vName='HBI — Ballroom Himalaya';
+  const vAddr='Jl. Ahmad Yani No.Km. 4, RW.5, Karang Mekar';
+  const vCity='Kec. Banjarmasin Tim., Kota Banjarmasin, Kalimantan Selatan 70234';
+  const dateAkad=akad.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const dateRese=resepsi.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const ad=el('akadDate'), rd=el('resepDate');
+  if(ad) ad.innerHTML=`<div class=\"eventDate\">${dateAkad}</div><div class=\"eventTime\">07.00–09.00 ${CONF.tz}</div>`;
+  if(rd) rd.innerHTML=`<div class=\"eventDate\">${dateRese}</div><div class=\"eventTime\">10.00–14.00 ${CONF.tz}</div>`;
+  const v1=el('venue1'), v2=el('venue2');
+  const vHtml=`<span class=\"venue name\">${vName}</span><br/><span class=\"venue addr\">${vAddr}</span><br/><span class=\"venue city\">${vCity}</span>`;
+  if(v1) v1.innerHTML=vHtml; if(v2) v2.innerHTML=vHtml;
+})();
+
 // ====== Fix content for WE FOUND LOVE (no structural change)
 (function(){
   const cards=document.querySelectorAll('#we .personCard');
@@ -211,14 +257,63 @@ const R=44,C=2*Math.PI*R,setRing=(id,val,max)=>{const c=el(id);if(!c)return;c.st
 function tick(){const now=new Date();let diff=Math.max(0,akad-now);const sec=Math.floor(diff/1000)%60,min=Math.floor(diff/60000)%60,hr=Math.floor(diff/3600000)%24,day=Math.floor(diff/86400000),pad=(n)=>String(n).padStart(2,'0');el('d').textContent=day;el('h').textContent=pad(hr);el('m').textContent=pad(min);el('s').textContent=pad(sec);setRing('ring-s',sec,60);setRing('ring-m',min,60);setRing('ring-h',hr,24)}tick();setInterval(tick,1000);
 
 // ====== OPEN INVITATION (tanpa ubah struktur)
-const openInvitation=()=>{document.body.classList.remove('lock');const cv=el('cover');if(cv)cv.style.display='none';buildGallery();const a=el('bgm');const mb=el('musicBtn');const bt=el('backTop');if(mb) mb.classList.remove('hidden');if(bt) bt.classList.remove('hidden');if(a){a.volume=0.8;a.play().then(()=>{mb&&mb.classList.add('is-playing');}).catch(()=>{});}};
+const openInvitation=()=>{document.body.classList.remove('lock');const cv=el('cover');if(cv)cv.style.display='none';buildGallery();const bt=el('backTop');if(bt) bt.classList.remove('hidden'); if(window.__musicAutoStart){ window.__musicAutoStart(); }};
 window.__open=()=>{openInvitation()};
 const btnOpen=el('openBtn');if(btnOpen)btnOpen.addEventListener('click',openInvitation);document.addEventListener('keydown',(e)=>{if((e.key==='Enter'||e.key===' ')&&el('cover')&&el('cover').style.display!=='none'){openInvitation()}});
 
 // ====== MUSIC & BACK-TO-TOP (tanpa ubah struktur)
-(function initUx(){try{var a=document.createElement('audio');a.id='bgm';a.preload='auto';a.loop=true;a.src='assets/bgm.mp3';a.addEventListener('error',function(){var mb=document.getElementById('musicBtn');if(mb) mb.remove();});document.body.appendChild(a);
-var mb=document.createElement('button');mb.id='musicBtn';mb.type='button';mb.className='hidden fixed bottom-4 left-4 z-[70] w-11 h-11 rounded-full bg-taupe-accent text-white shadow-soft grid place-items-center';mb.setAttribute('aria-label','Toggle music');function setIcon(){mb.textContent = (a.paused?'▶':'⏸');}mb.addEventListener('click',function(){if(a.paused){a.play().then(()=>{mb.classList.add('is-playing');setIcon();}).catch(()=>{});}else{a.pause();setIcon();}});document.body.appendChild(mb);a.addEventListener('play',setIcon);a.addEventListener('pause',setIcon);setIcon();
-var bt=document.createElement('button');bt.id='backTop';bt.type='button';bt.className='hidden fixed bottom-4 right-4 z-[70] w-11 h-11 rounded-full bg-taupe-accent text-white shadow-soft grid place-items-center opacity-0 pointer-events-none transition-opacity';bt.setAttribute('aria-label','Kembali ke atas');bt.textContent='↑';bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});window.addEventListener('scroll',function(){if(bt.classList.contains('hidden')) return;var show=window.scrollY>300;bt.style.opacity=show?'1':'0';bt.style.pointerEvents=show?'auto':'none';});document.body.appendChild(bt);}catch(e){}})();
+(function initUx(){
+  try{
+    var a=document.createElement('audio');
+    a.id='bgm'; a.preload='auto'; a.loop=true; a.src='assets/bgm.mp3'; a.volume=0;
+
+    var mb=document.createElement('button');
+    mb.id='musicBtn'; mb.type='button';
+    mb.className='hidden grid place-items-center text-white shadow-soft';
+    mb.setAttribute('aria-label','Toggle music');
+
+    function icon(paused){
+      return paused
+        ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+    }
+    function setIcon(){ mb.innerHTML = icon(a.paused); }
+
+    function fadeTo(target, ms){
+      var start=a.volume, t0=performance.now();
+      function step(t){ var k=Math.min(1,(t-t0)/ms); a.volume=start+(target-start)*k; if(k<1){ requestAnimationFrame(step);} else if(target===0){ a.pause(); mb.classList.remove('is-playing'); setIcon(); } }
+      requestAnimationFrame(step);
+    }
+
+    window.__musicAutoStart=function(){
+      mb.classList.remove('hidden');
+      a.volume=0;
+      a.play().then(()=>{ mb.classList.add('is-playing'); setIcon(); fadeTo(0.8,900); }).catch(()=>{});
+    };
+
+    mb.addEventListener('click',function(){
+      if(a.paused){ a.volume=0; a.play().then(()=>{ mb.classList.add('is-playing'); setIcon(); fadeTo(0.8,700); }).catch(()=>{}); }
+      else { fadeTo(0,500); }
+    });
+
+    a.addEventListener('play', setIcon);
+    a.addEventListener('pause', setIcon);
+
+    document.body.appendChild(a);
+    document.body.appendChild(mb);
+    setIcon();
+
+    // Back to top (tetap mengikuti gaya)
+    var bt=document.createElement('button');
+    bt.id='backTop'; bt.type='button';
+    bt.className='hidden fixed bottom-4 right-4 z-[70] w-11 h-11 rounded-full bg-taupe-accent text-white shadow-soft grid place-items-center opacity-0 pointer-events-none transition-opacity';
+    bt.setAttribute('aria-label','Kembali ke atas');
+    bt.textContent='↑';
+    bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+    window.addEventListener('scroll',function(){ if(bt.classList.contains('hidden')) return; var show=window.scrollY>300; bt.style.opacity=show?'1':'0'; bt.style.pointerEvents=show?'auto':'none'; });
+    document.body.appendChild(bt);
+  }catch(e){}
+})();
 
 // ====== REVEAL ON SCROLL (asli)
 (function setupReveals(){const els=document.querySelectorAll('.reveal');const IO=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const t=en.target;const d=t.dataset.delay||'0s';t.style.transitionDelay=d;t.classList.add('is-visible');IO.unobserve(t)}})},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});els.forEach(e=>IO.observe(e));window.__observe=(node)=>IO.observe(node);document.querySelectorAll('#cover .reveal').forEach(n=>n.classList.add('is-visible'));})();
