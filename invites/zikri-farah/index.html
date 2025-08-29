@@ -214,6 +214,23 @@ const crest=el('crest');if(crest){const initials=CONF.couple.split('&').map(s=>s
 el('verseText')&&(el('verseText').textContent=CONF.verse);el('verseRef')&&(el('verseRef').textContent=CONF.verseRef);
 el('footCouple')&&(el('footCouple').textContent=CONF.couple);el('year').textContent=new Date().getFullYear();
 
+// ====== HERO background crossfade (pakai assets/picture/*)
+(function(){
+  const imgs=(CONF.gallery&&CONF.gallery.length?CONF.gallery:['assets/hero.jpg']);
+  const A=document.getElementById('heroBgA'), B=document.getElementById('heroBgB'); if(!A||!B||!imgs.length) return;
+  let idx=0, onA=true;
+  const setBg=(node,url)=>{ node.style.backgroundImage=`url('${url}')`; };
+  const preload=(src)=>{ const im=new Image(); im.src=src; };
+  setBg(A, imgs[0]); A.classList.add('show');
+  if(imgs.length>1){ setBg(B, imgs[1]); preload(imgs[2%imgs.length]||imgs[0]); }
+  setInterval(()=>{
+    const next=imgs[(idx+1)%imgs.length];
+    if(onA){ setBg(B,next); B.classList.add('show'); A.classList.remove('show'); }
+    else   { setBg(A,next); A.classList.add('show'); B.classList.remove('show'); }
+    onA=!onA; idx=(idx+1)%imgs.length; preload(imgs[(idx+1)%imgs.length]);
+  },7000);
+})();
+
 // ====== Event formatting – split date/time & tidy venue hierarchy
 (function(){
   const vName='HBI — Ballroom Himalaya';
