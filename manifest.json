@@ -1,0 +1,36 @@
+{
+  "name": "Alip Hamjah - Software Developer",
+  "short_name": "Alip Hamjah",
+  "description": "Personal website of Alip Hamjah - Software developer passionate about writing code and building applications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#bd2130",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "portfolio"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "GitHub",
+      "short_name": "GitHub",
+      "description": "Visit my GitHub profile",
+      "url": "https://github.com/aliphamjah",
+      "icons": []
+    },
+    {
+      "name": "LinkedIn",
+      "short_name": "LinkedIn",
+      "description": "Visit my LinkedIn profile",
+      "url": "https://www.linkedin.com/in/aliphamjah",
+      "icons": []
+    }
+  ]
+}

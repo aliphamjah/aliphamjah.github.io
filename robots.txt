@@ -1,0 +1,10 @@
+# robots.txt for https://aliphamjah.github.io/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aliphamjah.github.io/sitemap.xml
+
+# Crawl-delay (optional, adjust if needed)
+# Crawl-delay: 1
