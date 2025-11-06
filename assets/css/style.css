@@ -1,27 +1,102 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #303042;
+  --heading-bg: #bd2130;
+  --heading-color: white;
+  --social-bg: #ffffff;
+  --social-border: #c8c2c2;
+  --social-hover-bg: #303042;
+  --social-hover-color: #ffffff;
+  --cursor-color: rgba(255, 255, 255, 0.75);
+  --pattern-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a2e;
+    --text-color: #eaeaea;
+    --heading-bg: #bd2130;
+    --heading-color: white;
+    --social-bg: #2a2a3e;
+    --social-border: #3a3a4e;
+    --social-hover-bg: #bd2130;
+    --social-hover-color: #ffffff;
+    --cursor-color: rgba(189, 33, 48, 0.75);
+    --pattern-opacity: 0.3;
+  }
+}
+
 html,
 body {
   min-height: 100%;
 }
-* {
+/* Skip to content link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--heading-bg);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Better focus management for accessibility */
+*:focus {
+  outline: 2px solid var(--heading-bg);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
   outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--heading-bg);
+  outline-offset: 2px;
+}
+
+/* Ensure touch targets are at least 44x44px */
+.social a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 body {
   position: relative;
+  background-color: var(--bg-color);
   background-image: url("../img/pattern.png");
   font-family: monospace;
   background-size: cover;
+  background-blend-mode: overlay;
   -webkit-backdrop-filter: blur(4px);
   min-height: 100vh;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.7)), url("../img/pattern.png");
+  }
 }
 .name {
   padding-bottom: 2vh;
   padding-top: 10vh;
 }
 .name h1 {
-    background-color: #bd2130;
+    background-color: var(--heading-bg);
     display: initial;
     padding: 0px 15px;
-    color: white;
+    color: var(--heading-color);
 }
 .head {
   min-height: 100vh;
@@ -32,13 +107,13 @@ body {
   background-size: 53vh;
 }
 .font-1 {
-  color: #303042;
+  color: var(--text-color);
   font-family: "Red Hat Mono",Monaco,Consolas,monospace;
   font-weight: bold;
   position: relative;
   top: 50%;
   margin: 0 auto;
-  border-right: 10px solid rgba(255, 255, 255, 0.75);
+  border-right: 10px solid var(--cursor-color);
   font-size: 170%;
   text-align: center;
   white-space: nowrap;
@@ -65,27 +140,30 @@ h1 {
 .social li {
   list-style-type: none;
   display: inline-block;
-  border: 1px solid #c8c2c2;
+  border: 1px solid var(--social-border);
   margin-right: 5px;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: var(--social-bg);
+  transition: all 0.3s ease;
 }
 .social a {
   padding: 10px;
-  color: #303042;
+  color: var(--text-color);
   text-align: center;
   text-decoration: none;
   border-radius: 10px;
+  transition: all 0.3s ease;
 }
 .social a:hover {
-  color: #ffffff;
-  background-color: #303042;
+  color: var(--social-hover-color);
+  background-color: var(--social-hover-bg);
 }
 .wow-btn {
   padding-top: 4vh;
   padding-bottom: 2vh;
 }
 
+/* Mobile phones (portrait) */
 @media only screen and (max-width: 480px) {
   .font-1 {
     font-size: 18px;
@@ -96,6 +174,70 @@ h1 {
   }
   h1 {
     font-size: 38px;
+  }
+  .head {
+    background-size: 50vh;
+  }
+}
+
+/* Mobile phones (landscape) and small tablets */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .font-1 {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 45px;
+  }
+  .head {
+    background-size: 55vh;
+  }
+  .social li {
+    margin-right: 8px;
+  }
+}
+
+/* Tablets (portrait) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .font-1 {
+    font-size: 22px;
+  }
+  h1 {
+    font-size: 50px;
+  }
+  .head {
+    background-size: 58vh;
+  }
+  .social li {
+    margin-right: 10px;
+  }
+  .social a {
+    padding: 12px;
+  }
+}
+
+/* Desktop and larger tablets (landscape) */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .font-1 {
+    font-size: 24px;
+  }
+  h1 {
+    font-size: 55px;
+  }
+  .head {
+    background-size: 60vh;
+  }
+}
+
+/* Large desktop */
+@media only screen and (min-width: 1441px) {
+  .font-1 {
+    font-size: 26px;
+  }
+  .head {
+    background-size: 65vh;
+  }
+  .container {
+    max-width: 1200px;
   }
 }
 
@@ -131,9 +273,9 @@ h1 {
 }
 @keyframes blinkTextCursor {
   from {
-    border-right-color: rgba(255, 255, 255, 0.75);
+    border-right-color: var(--cursor-color);
   }
   to {
-    border-right-color: #303042;
+    border-right-color: var(--text-color);
   }
 }
